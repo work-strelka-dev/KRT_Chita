@@ -23,7 +23,7 @@ RUN_CONFIG   = "run_config.txt"
 RESULTS_DIR  = pathlib.Path("results")
 
 def remove_water_hexes(hexes):
-    """Удаляет ячейки, центр которых попадает в полигон водной поверхности."""
+    """Удаляет ячейки, более половины площади которых покрыто водой."""
 
     if not WATER_PATH.exists():
         raise FileNotFoundError(
@@ -45,18 +45,15 @@ def remove_water_hexes(hexes):
         ["geometry"],
     ].copy()
 
-    # Определяем принадлежность к воде по центру гексагона.
-    # Так береговые ячейки не удаляются из-за минимального пересечения с водой.
-    hex_centers = hexes[["hex_id", "geometry"]].copy()
-    hex_centers["geometry"] = hexes.geometry.centroid
+    # Объединяем водные объекты, чтобы их взаимные наложения не учитывались
+    # несколько раз, и считаем фактическую площадь воды внутри каждого гекса.
+    water_geometry = water.geometry.unary_union
+    water_overlap_area = hexes.geometry.intersection(water_geometry).area
+    hex_area = hexes.geometry.area
+    water_share = water_overlap_area / hex_area
 
-    water_hits = hex_centers.sjoin(
-        water,
-        how="inner",
-        predicate="intersects",
-    )
-
-    water_hex_ids = water_hits["hex_id"].unique()
+    # Ровно 50% недостаточно: удаляются только гексы с покрытием более 50%.
+    water_hex_ids = hexes.loc[water_share > 0.5, "hex_id"]
 
     filtered = hexes.loc[
         ~hexes["hex_id"].isin(water_hex_ids)

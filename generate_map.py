@@ -43,7 +43,7 @@ OSM_ATTRIBUTION = (
 DEFAULT_RESULTS_GPKG = pathlib.Path("results/krt_scores.gpkg")
 XLSX_PATH      = "Критерии.xlsx"
 OUTPUT_HTML    = pathlib.Path("results/krt_map.html")
-KRT_PLOTS_SHP  = pathlib.Path("input_data/Площадки КРТ/Площадки КРТ.shp")
+KRT_PLOTS_SHP  = pathlib.Path("01_vector data/Площадки КРТ.shp")
 DEFAULT_CENTER = (51.95, 113.5)   # Чита, WGS-84
 
 # ── Шрифты ────────────────────────────────────────────────────────────────────
@@ -53,9 +53,11 @@ DEFAULT_CENTER = (51.95, 113.5)   # Чита, WGS-84
 # family должен совпадать с font-family в CSS ниже.
 FONTS_DIR   = pathlib.Path("fonts")
 FONT_FACES  = [
-    {"family": "Atlas Grotesk LC Regular", "file": "AtlasGroteskLC-Regular.woff2",
+    {"family": "Atlas Grotesk LC", "file": "Atlas Grotesk-Regular-Desktop.otf",
      "weight": 400, "style": "normal"},
-    {"family": "FugueMonoKB",              "file": "FugueMonoKB.woff2",
+    {"family": "Atlas Grotesk LC", "file": "Atlas Grotesk-Medium-Desktop.otf",
+     "weight": 500, "style": "normal"},
+    {"family": "Atlas Grotesk LC", "file": "Atlas Grotesk-Bold-Desktop.otf",
      "weight": 700, "style": "normal"},
 ]
 
@@ -439,7 +441,7 @@ _HTML_TEMPLATE = """\
 
     body {
       position: relative; height: 100vh;
-      font-family: 'Atlas Grotesk LC Regular', 'Segoe UI', Arial, sans-serif; font-size: 13px;
+      font-family: 'Atlas Grotesk LC', 'Segoe UI', Arial, sans-serif; font-size: 13px;
       background: #E9EDED; color: #1F2023;
       overflow: hidden;
     }
@@ -473,7 +475,7 @@ _HTML_TEMPLATE = """\
       flex-shrink: 0;
     }
     #sidebar-header h1 {
-      font-family: 'FugueMonoKB', 'Courier New', monospace;
+      font-family: 'Atlas Grotesk LC', 'Segoe UI', Arial, sans-serif;
       font-size: 15px; font-weight: 700;
       color: #028BA8; letter-spacing: 0.2px;
       text-transform: uppercase;
