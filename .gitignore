@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Leaflet cache (перегенерируется автоматически)
+.leaflet_cache/
+
+# Результаты пайплайна (тяжёлые файлы, не для VCS)
+results/*.gpkg
+results/krt_map.html
+
+# Excel lock-файлы
+~$*.xlsx
+
+# QGIS backup-файлы
+*.qgs~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Локальные входные данные и генерируемые результаты
+input_data/
+results/
+
+# Локальные секреты и переменные окружения
+.env
+.env.*
+!.env.example

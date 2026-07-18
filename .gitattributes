@@ -1,0 +1,10 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.gpkg binary
+*.xlsx binary
+*.pdf binary
+*.qpt text eol=lf
+*.qml text eol=lf

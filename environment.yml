@@ -1,0 +1,13 @@
+name: krt
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - geopandas      # включает gdal, fiona, shapely, pyproj
+  - numpy
+  - pandas
+  - openpyxl       # чтение .xlsx (Критерии.xlsx)
+  - rasterio       # чтение растровых метрик
+  - requests       # запросы к Valhalla
+  - python-dotenv  # локальная загрузка MAPBOX_TOKEN и VALHALLA_URL из .env
